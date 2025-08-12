@@ -25,7 +25,10 @@ body{
 
 .text-clamp{
     text-align: center;
-    font-size: clamp(20px, 5vmin,100px);
+    font-size: clamp(20px, 5vmin, 100px);
+    opacity: 0;
+    animation: reveal-text 3.5s ease forwards;
+    animation-delay: 5s;
 }
 
 .grid-template{
@@ -38,53 +41,47 @@ body{
 }
 
 .text-show{
-    animation: reveal-text ease both;
-    animation-timeline: scroll();
-    animation-range: 80%;
-    opacity: var(--text);
     position: relative;
     z-index: 10;
     padding-top: 6cqw;
     text-align: center;
     font-size: 5cqw;
-    --tw-text-opacity:1;
+    --tw-text-opacity: 1;
     color: rgb(248 113 113 / var(--tw-text-opacity));
 }
-
 
 .envelope{
     container: envelope/ inline-size;
     perspective: 1000px;
     position: relative;
     width: 60vmin;
-    aspect-ratio: 16/9;
-    --tw-bg-opacity:1;
+    aspect-ratio: 16 / 9;
+    --tw-bg-opacity: 1;
     background-color: rgb(226 232 240 / var(--tw-bg-opacity));
     --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
                  0 8px 10px -6px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.flap{ 
-   --tw-bg-opacity:1;
+.flap {
+   --tw-bg-opacity: 1;
    background-color: rgb(203 213 225 / var(--tw-bg-opacity));
-   clip-path: polygon(100% 0%, 0 0%, 50% 100% );
+   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
    width: 100cqw;
    height: 30cqw;
    transform-style: preserve-3d;
    rotate: x var(--flap-rotation);
    transform-origin: 50% 0;
-   animation: animate-flap ease both;
-   animation-timeline: scroll();
-   animation-range: 0 60%;
+   animation: animate-flap 3.5s ease forwards;
+   animation-delay: 0s;
    z-index: 4;
    position: relative;
 }
 
 .face{
     clip-path: polygon(50% 35%, 100% 0, 100% 100%, 0 100%, 0 0);
-    --tw-bg-opacity:1;
+    --tw-bg-opacity: 1;
     background-color: rgb(241 245 249 / var(--tw-bg-opacity));
     inset: 0px;
     position: absolute;
@@ -93,59 +90,60 @@ body{
 
 .sello {
   position: absolute;
-  top: 0;       /* arriba */
-  right: 0;     /* derecha */
-  width: 50px;  /* tamaño del sello, ajusta según convenga */
+  top: 0;
+  right: 0;
+  width: 50px;
   height: 50px;
-  transform: translate(50%, -50%); /* lo saca un poco fuera de la solapa para que parezca enganchado */
-  z-index: 10;  /* que quede arriba */
-  pointer-events: none; /* para que no interfiera al hacer click */
+  transform: translate(50%, -50%);
+  z-index: 10;
+  pointer-events: none;
 }
 
 .heart {
---c: #FFD700;
-position: absolute;
-width: 46cqw; /* parece que querías usar cqw, que no es estándar, ¿quizás querías vw? */
-left: 50%;
-top: 0;
-transform: translateY(var(--progress));
-animation: show-heart ease both;
-animation-timeline: scroll();
-animation-range: 60%;
-margin-left: -23cqw; /* igual aquí, probablemente margin-left: -25vw */
-aspect-ratio: 1 / 1;
-z-index: 3;
-background: var(--c) url(Sin_título.png) center/cover no-repeat;
-border-radius: 12px; /* para que sea un rectángulo sin bordes redondeados */
+    --c: #FFD700;
+    position: absolute;
+    width: 46cqw;
+    left: 50%;
+    top: 0;
+    transform: translateY(var(--progress));
+    animation: show-heart 3.5s ease forwards;
+    animation-delay: 3.5s;
+    margin-left: -23cqw;
+    aspect-ratio: 1 / 1;
+    z-index: 3;
+    background: var(--c) url(Sin_título.png) center/cover no-repeat;
+    border-radius: 12px;
 }
 
-@keyframes animate-flap{
-    from{
+@keyframes animate-flap {
+    from {
         --flap-rotation: 0deg;
     }
-    99%{
+    99% {
         z-index: 4;
     }
-    100%{
+    to {
         --flap-rotation: 180deg;
         z-index: 1;
     }
 }
 
-@keyframes show-heart{
-    from{
+@keyframes show-heart {
+    from {
         --progress: 20%;
     }
-    to{
+    to {
         --progress: -90%;
     }
 }
 
-@keyframes reveal-text{
-    from{
+@keyframes reveal-text {
+    from {
         --text: 0.0;
+        opacity: 0;
     }
-    to{
+    to {
         --text: 1.0;
+        opacity: 1;
     }
 }
