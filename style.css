@@ -1,7 +1,9 @@
 #envelope {
   position: relative;
-  width: 280px;
-  height: 180px;
+  width: 300px;
+  height: 200px;
+  margin: 50px auto;
+  cursor: pointer;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   margin-left: auto;
@@ -9,6 +11,24 @@
   top: 150px;
   background-color: #FFC0CB;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  perspective: 1000px;
+  transition: transform 1s ease;
+}
+
+.envelope.open {
+    transform: scale(1.5); /* Aumenta tamaño para acercar al usuario */
+    z-index: 10; /* Que quede encima de todo */
+}
+
+/* Ajuste responsive para móviles */
+@media (max-width: 768px) {
+    .envelope {
+        width: 90%;
+        height: 180px;
+    }
+    .envelope.open {
+        transform: scale(1.2); /* Zoom más moderado en móviles */
+    }
 }
 
 .front {
@@ -17,6 +37,7 @@
   height: 0;
   z-index: 3;
 }
+
 
 .flap {
   border-left: 140px solid transparent;
