@@ -1,20 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tr-Carta</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Envelope Open Animation with Hearts</title>
+  <link rel="stylesheet" href="./style.css"> 
+  <link rel="stylesheet" href="./modal.css">
+
 </head>
 <body>
-    <h1 class="text-clamp"></h1>
-    <div class="grid-template">
-        <div class="envelope">
-            <div class="flap"></div>
-            <div class="heart"></div>
-            <div class="face"></div>
+<!--Start of Modal -->
+<div class="modal">
+    <input id="modal__trigger" type="checkbox" checked /> <!-- checked para abrir al cargar -->
+    <div class="modal__overlay" role="dialog" aria-labelledby="modal__title" aria-describedby="modal_desc">
+        <div class="modal__wrap">
+            <!-- Quitamos el label "Launch Modal" porque será automático -->
+            
+            <div class="envlope-wrapper">
+                <div id="envelope" class="close">
+                    <div class="front flap"></div>
+                    <div class="front pocket"></div>
+                    <div class="letter">
+                        <div class="words line1"></div>
+                        <div class="words line2"></div>
+                        <div class="words line3"></div>
+                        <div class="words line4"></div>
+                    </div>
+                    <div class="hearts">
+                        <div class="heart a1"></div>
+                        <div class="heart a2"></div>
+                        <div class="heart a3"></div>
+                    </div>
+    <!-- Sello de cera -->
+    <img src="L.png" alt="Sello de cera" class="wax-seal">
+                </div>
+            </div>
+            <div class="reset">
+                <button id="open">Open</button>
+                <button id="reset">Reset</button>
+            </div>
         </div>
     </div>
+</div>
+<!--End of Modal -->
+
+
+
+<audio id="bg-music" src="Golfista.mp3"></audio>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script><script  src="./script.js"></script>
+<script src="./script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    const modalTrigger = document.getElementById("modal__trigger");
+    const envelope = document.getElementById("envelope");
+    const letter = document.querySelector(".letter");
+    const waxSeal = document.querySelector(".wax-seal"); // Sello L.png
+    const music = document.getElementById("bg-music");
+
+    function closeModalAndPlayMusic() {
+        modalTrigger.checked = false;
+        music.play().catch(err => {
+            console.log("No se pudo reproducir automáticamente:", err);
+        });
+    }
+
+    // Cerrar modal y reproducir música al hacer clic
+    envelope.addEventListener("click", closeModalAndPlayMusic);
+    letter.addEventListener("click", closeModalAndPlayMusic);
+    waxSeal.addEventListener("click", closeModalAndPlayMusic);
+});
+</script>
 </body>
 </html>
-
